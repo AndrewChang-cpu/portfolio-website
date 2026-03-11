@@ -1,43 +1,58 @@
 #!/bin/bash
 # Universal AI Agent Environment Bootstrapper
+# Cross-Platform: Works on Linux and Windows (via cmd calling bash)
+# NOTE: On Windows, Claude MCP registration is handled by vibe-setup.bat
+#       Run vibe-setup.bat from cmd instead of this script directly.
 
 echo "[INFO] Initializing AI Agent Environment in $PWD..."
 
 # ==============================================================================
-# 1. UNIVERSAL BASE (The Single Source of Truth)
+# 0. DETECT OS
 # ==============================================================================
-echo "[INFO] Configuring Universal Base..."
+IS_WINDOWS=false
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" || "$OS" == "Windows_NT" || -n "$WSL_DISTRO_NAME" ]]; then
+  IS_WINDOWS=true
+  echo "[INFO] Detected Windows"
+else
+  echo "[INFO] Detected Linux/macOS"
+fi
 
+# ==============================================================================
+# 1. UNIVERSAL BASE
+# ==============================================================================
+echo "[INFO] Configuring Universal Base directories..."
+
+source .env
 mkdir -p .vibe/skills
 
-# Generate Universal Vibe Template
 if [ ! -f .vibe/rules.md ]; then
 cat << 'EOF' > .vibe/rules.md
 # Project Context
 - Name: Interactive Developer Portfolio
 - Stack: Next.js (App Router), TypeScript, React, Tailwind CSS, Three.js
-- Architecture: Component-driven UI with a strict separation of concerns. Data is statically sourced from data/resume.json to populate sections like Education, Experience, Projects, and Hackathons. UI elements are built as functional components in the app/components/ directory. Next.js Server Components should be used by default, isolating Three.js WebGL rendering exclusively to Client Components
+- Architecture: Component-driven UI. Next.js Server Components by default; Three.js WebGL restricted to Client Components. Data sourced from data/resume.json.
 
 # Agent Constraints
-- Test Coverage: All data-parsing utilities and core UI components must include Jest or Vitest unit tests.
-- Code Style: Follow best practices for React development and future-proofing for later development. Use functional React components with Hooks. Enforce strict TypeScript typing for all component props, ensuring interfaces perfectly mirror the structured resume data. Prefer absolute imports (e.g., @/components/ExperienceTimeline) and avoid inline CSS in favor of Tailwind utility classes
-
-## Extended Capabilities
-ALWAYS read `.vibe/mcp-triggers.md` before executing complex tasks or using external tools.
+- Test Coverage: Core UI components must include Jest/Vitest unit tests.
+- Code Style: Functional React components, strict TypeScript typing, absolute imports, Tailwind utility classes.
 EOF
+echo "[CREATED] .vibe/rules.md"
 fi
 
-# Generate MCP Triggers Template
 if [ ! -f .vibe/mcp-triggers.md ]; then
 cat << 'EOF' > .vibe/mcp-triggers.md
 # MCP Tool Triggers
-- Database/SQL: Use `postgres` MCP to inspect live schema before writing migrations.
-- GitHub/Version Control: Use `github` MCP to read issues and draft PRs.
-- UI/Browser: Use `puppeteer` MCP to inspect localhost rendering and console errors.
-- API/Docs: Use `context7` MCP to retrieve the most up-to-date framework documentation.
-- Complex Refactors: Use `sequential-thinking` MCP to output a step-by-step plan before writing code.
+- Database/SQL: Use postgres MCP to inspect live schema.
+- GitHub/VC: Use github MCP to read issues and draft PRs.
+- UI/Browser: Use puppeteer MCP to inspect localhost rendering.
+- API/Docs: Use context7 MCP for framework documentation.
+- Planning: Use sequential-thinking MCP before writing code.
 EOF
+echo "[CREATED] .vibe/mcp-triggers.md"
 fi
+
+RULES_CONTENT=$(cat .vibe/rules.md)
+MCP_CONTENT=$(cat .vibe/mcp-triggers.md)
 
 # ==============================================================================
 # 2. CURSOR CONFIGURATION
@@ -46,8 +61,36 @@ echo "[INFO] Configuring Cursor..."
 
 mkdir -p .cursor/rules
 
-# Configure Cursor MCP Server Workspace
+# Cursor MCP config differs: Windows needs 'cmd /c' wrappers, Linux runs npx directly
 if [ ! -f .cursor/mcp.json ]; then
+  if [ "$IS_WINDOWS" = true ]; then
+cat << 'EOF' > .cursor/mcp.json
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost:5432/postgres"]
+    },
+    "github": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-github"]
+    },
+    "sequential-thinking": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "puppeteer": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-puppeteer"]
+    },
+    "context7": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@upstash/context7-mcp"]
+    }
+  }
+}
+EOF
+  else
 cat << 'EOF' > .cursor/mcp.json
 {
   "mcpServers": {
@@ -69,48 +112,108 @@ cat << 'EOF' > .cursor/mcp.json
     },
     "context7": {
       "command": "npx",
-      "args": ["-y", "@context7/mcp-server"]
+      "args": ["-y", "@upstash/context7-mcp"]
     }
   }
 }
 EOF
+  fi
+  echo "[CREATED] .cursor/mcp.json"
 fi
 
-# Link Universal Rules to Cursor's MDC format
-ln -sf ../../.vibe/rules.md .cursor/rules/000-main-rules.mdc
-ln -sf ../../.vibe/mcp-triggers.md .cursor/rules/001-mcp-triggers.mdc
+cp .vibe/rules.md .cursor/rules/000-main-rules.mdc
+cp .vibe/mcp-triggers.md .cursor/rules/001-mcp-triggers.mdc
 
 # ==============================================================================
 # 3. CLAUDE CODE CONFIGURATION
 # ==============================================================================
 echo "[INFO] Configuring Claude Code..."
 
-# Register MCP servers globally via Claude CLI
-claude mcp add postgres npx @modelcontextprotocol/server-postgres "postgresql://localhost:5432/postgres"
-claude mcp add github npx @modelcontextprotocol/server-github
-claude mcp add sequential-thinking npx @modelcontextprotocol/server-sequential-thinking
-claude mcp add puppeteer npx @modelcontextprotocol/server-puppeteer
-claude mcp add context7 npx @context7/mcp-server
+# On Linux/macOS, register MCP servers directly.
+# On Windows, this is skipped — vibe-setup.bat handles claude CLI calls instead.
+if [ "$IS_WINDOWS" = false ]; then
+  claude mcp remove postgres 2>/dev/null || true
+  claude mcp remove github 2>/dev/null || true
+  claude mcp remove sequential-thinking 2>/dev/null || true
+  claude mcp remove puppeteer 2>/dev/null || true
+  claude mcp remove context7 2>/dev/null || true
 
-# Link Universal Rules to Claude's root configuration
-ln -sf .vibe/rules.md CLAUDE.md
+  claude mcp add --transport stdio postgres -- npx -y @modelcontextprotocol/server-postgres postgresql://localhost:5432/postgres
+  claude mcp add --transport stdio github -- npx -y @modelcontextprotocol/server-github
+  claude mcp add --transport stdio sequential-thinking -- npx -y @modelcontextprotocol/server-sequential-thinking
+  claude mcp add --transport stdio puppeteer -- npx -y @modelcontextprotocol/server-puppeteer
+  claude mcp add --scope user --transport stdio context7 -- npx -y @upstash/context7-mcp --api-key $CONTEXT7_API_KEY
+  # Note: Ensure GITHUB_PERSONAL_ACCESS_TOKEN and CONTEXT7_API_KEY are set in your .env
+else
+  echo "[INFO] Skipping Claude MCP registration on Windows. Run these commands manually in cmd after setup:
+claude mcp remove postgres
+claude mcp remove github
+claude mcp remove sequential-thinking
+claude mcp remove puppeteer
+claude mcp remove context7
+
+claude mcp add --transport stdio postgres -- npx.cmd -y @modelcontextprotocol/server-postgres postgresql://localhost:5432/postgres
+claude mcp add --transport stdio github -- npx.cmd -y @modelcontextprotocol/server-github
+claude mcp add --transport stdio sequential-thinking -- npx.cmd -y @modelcontextprotocol/server-sequential-thinking
+claude mcp add --transport stdio puppeteer -- npx.cmd -y @modelcontextprotocol/server-puppeteer
+claude mcp add --scope user --transport stdio context7 -- npx.cmd -y @upstash/context7-mcp --api-key %CONTEXT7_API_KEY%
+"
+fi
+
+cat << EOF > CLAUDE.md
+# Global Agent Instructions
+You are an expert software architect. Write clean, secure, and optimized code while strictly adhering to the project context and constraints.
+
+## Primary Directives
+1. **Plan Before Coding**: For any task touching >2 files, output an architectural plan first.
+2. **Minimal Diff**: Only modify files explicitly required.
+3. **Run Checks**: Always run linting and testing commands after making logic changes.
+
+---
+
+$RULES_CONTENT
+
+---
+
+## Project Architecture & Directory Map
+[TODO: Define the explicit folder structure.]
+
+## Anti-Patterns & "Never Do This"
+[TODO: List specific practices the agent must strictly avoid.]
+
+## Git & Workflow Standards
+[TODO: Define commit message format and PR rules.]
+
+## Definition of Done (DoD)
+[TODO: Define the checklist the agent must complete before finishing a task.]
+
+---
+
+$MCP_CONTENT
+
+---
+
+## Useful Project Commands
+- Run Development Server: npm run dev
+- Build for Production: npm run build
+- Run Test Suite: npm run test
+EOF
 
 # ==============================================================================
-# 4. GITHUB COPILOT CLI CONFIGURATION
+# 4. GITHUB COPILOT CLI & GENERIC STANDARDS
 # ==============================================================================
-echo "[INFO] Configuring GitHub Copilot..."
+echo "[INFO] Configuring GitHub Copilot & Generic Standards..."
 
 mkdir -p .github
 
-# Link Universal Rules to Copilot's specific instruction file
-ln -sf ../.vibe/rules.md .github/copilot-instructions.md
+cat << EOF > .github/copilot-instructions.md
+$RULES_CONTENT
 
-# ==============================================================================
-# 5. OPENAI CODEX & GENERIC STANDARDS
-# ==============================================================================
-echo "[INFO] Configuring Generic Agent Standards..."
+---
 
-# Link Universal Rules to the generic AGENTS.md standard
-ln -sf .vibe/rules.md AGENTS.md
+$MCP_CONTENT
+EOF
 
-echo "[SUCCESS] Bootstrapping complete. Fill out the bracketed fields in .vibe/rules.md."
+cp CLAUDE.md AGENTS.md
+
+echo "[SUCCESS] Bootstrapping complete. Core files generated and synchronized."
