@@ -51,6 +51,135 @@ EOF
 echo "[CREATED] .vibe/mcp-triggers.md"
 fi
 
+# ------------------------------------------------------------------------------
+# 1b. PROJECT MEMORY
+# ------------------------------------------------------------------------------
+echo "[INFO] Initializing project memory..."
+
+mkdir -p memory
+
+if [ ! -f memory/INDEX.md ]; then
+cat << 'EOF' > memory/INDEX.md
+# Memory Index
+
+Read this file at the start of every session to orient yourself.
+Update the relevant memory files after completing significant work.
+
+| File | Type | Description |
+|---|---|---|
+| user.md | user | Owner preferences, working style, expertise |
+| project.md | project | Current state, active goals, key decisions |
+| feedback.md | feedback | Corrections and things to avoid repeating |
+| reference.md | reference | Where things live — external systems, URLs, docs |
+
+## Memory Format
+
+Each memory file uses this structure:
+
+```markdown
+---
+type: user | project | feedback | reference
+updated: YYYY-MM-DD
+---
+
+[content]
+```
+
+For **feedback** and **project** entries, include:
+- The rule or fact
+- **Why:** the reason behind it
+- **How to apply:** when this guidance kicks in
+
+## Notes for AI models
+
+- **Claude Code**: reconcile this folder with your native `.claude/projects/.../memory/` store.
+  Prefer the repo copy for project/feedback/reference; prefer your native store for user preferences.
+- **All other models**: this folder is your only persistent memory. Read it at session start;
+  write back any new learnings before the session ends.
+- Do not save: code patterns, file structure, or anything already in CLAUDE.md/AGENTS.md.
+- Do not duplicate entries. Update existing files rather than creating new ones.
+EOF
+echo "[CREATED] memory/INDEX.md"
+fi
+
+if [ ! -f memory/user.md ]; then
+cat << 'EOF' > memory/user.md
+---
+type: user
+updated: YYYY-MM-DD
+---
+
+# User Profile
+
+[To be populated as preferences and working style become clear.]
+
+Examples of what belongs here:
+- Preferred response length and format
+- Domain expertise (what to assume vs. explain)
+- Tool and workflow preferences
+EOF
+echo "[CREATED] memory/user.md"
+fi
+
+if [ ! -f memory/project.md ]; then
+cat << 'EOF' > memory/project.md
+---
+type: project
+updated: YYYY-MM-DD
+---
+
+# Project State
+
+[To be populated after first working session.]
+
+Examples of what belongs here:
+- Current build status (passing/failing)
+- Active workstreams and their status
+- Key architectural decisions and why they were made
+- Known blockers or TODOs
+EOF
+echo "[CREATED] memory/project.md"
+fi
+
+if [ ! -f memory/feedback.md ]; then
+cat << 'EOF' > memory/feedback.md
+---
+type: feedback
+updated: YYYY-MM-DD
+---
+
+# Feedback & Corrections
+
+[Populated when the user corrects AI behavior.]
+
+Format per entry:
+**Rule**: [what to do / not do]
+**Why**: [reason the user gave]
+**How to apply**: [when this kicks in]
+EOF
+echo "[CREATED] memory/feedback.md"
+fi
+
+if [ ! -f memory/reference.md ]; then
+cat << 'EOF' > memory/reference.md
+---
+type: reference
+updated: YYYY-MM-DD
+---
+
+# External References
+
+[Populated as external systems are introduced.]
+
+Examples of what belongs here:
+- Issue tracker project names/URLs
+- Key dashboard or monitoring URLs
+- Relevant documentation pages
+- Environment-specific connection strings (non-secret)
+EOF
+echo "[CREATED] memory/reference.md"
+fi
+
 RULES_CONTENT=$(cat .vibe/rules.md)
 MCP_CONTENT=$(cat .vibe/mcp-triggers.md)
 
@@ -124,6 +253,13 @@ fi
 cp .vibe/rules.md .cursor/rules/000-main-rules.mdc
 cp .vibe/mcp-triggers.md .cursor/rules/001-mcp-triggers.mdc
 
+cat << 'EOF' > .cursor/rules/002-memory.mdc
+## Memory
+Project memory lives in `memory/`. Read `memory/INDEX.md` at the start of each session.
+After completing significant work, update the relevant memory files with key learnings, decisions, and corrections.
+If you have a native memory system, reconcile it with the `memory/` folder at session start.
+EOF
+
 # ==============================================================================
 # 3. CLAUDE CODE CONFIGURATION
 # ==============================================================================
@@ -150,7 +286,7 @@ claude mcp remove postgres
 claude mcp remove github
 claude mcp remove sequential-thinking
 claude mcp remove puppeteer
-claude mcp remove context7
+claude mcp remove context7 --scope user
 
 claude mcp add --transport stdio postgres -- npx.cmd -y @modelcontextprotocol/server-postgres postgresql://localhost:5432/postgres
 claude mcp add --transport stdio github -- npx.cmd -y @modelcontextprotocol/server-github
@@ -193,6 +329,10 @@ $MCP_CONTENT
 
 ---
 
+## Memory
+Project memory lives in \`memory/\`. Read \`memory/INDEX.md\` at the start of each session.
+After completing significant work, update the relevant memory files with key learnings, decisions, and corrections.
+
 ## Useful Project Commands
 - Run Development Server: npm run dev
 - Build for Production: npm run build
@@ -212,6 +352,13 @@ $RULES_CONTENT
 ---
 
 $MCP_CONTENT
+
+---
+
+## Memory
+Project memory lives in \`memory/\`. Read \`memory/INDEX.md\` at the start of each session.
+After completing significant work, update the relevant memory files with key learnings, decisions, and corrections.
+If you have a native memory system, reconcile it with the \`memory/\` folder at session start.
 EOF
 
 cp CLAUDE.md AGENTS.md

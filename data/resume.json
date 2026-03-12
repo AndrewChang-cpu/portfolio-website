@@ -1,0 +1,218 @@
+{
+  "personal": {
+    "name": "Andrew Chang",
+    "email": "andrew.enda.chang@gmail.com",
+    "phone": "843-321-3791",
+    "linkedin": "linkedin.com/in/CS-Andrew-Chang",
+    "github": "github.com/AndrewChang-cpu",
+    "tagline": "Software Engineer — Distributed Systems & Infrastructure"
+  },
+  "education": [
+    {
+      "id": "cmu",
+      "school": "Carnegie Mellon University",
+      "location": "Pittsburgh, PA",
+      "degree": "Master of Software Engineering in Scalable Systems",
+      "gpa": "4.29/4.33",
+      "dateRange": "December 2026",
+      "description": "Graduate study in scalable systems design and software engineering.",
+      "courses": [
+        "Distributed Systems",
+        "Advanced ML & Game Theory",
+        "DevOps",
+        "Data Intensive Systems",
+        "Formal Methods",
+        "QA",
+        "API Design"
+      ],
+      "honors": [],
+      "links": [],
+      "image": "/images/schools/cmu.jpg"
+    },
+    {
+      "id": "mizzou",
+      "school": "University of Missouri",
+      "location": "Columbia, MO",
+      "degree": "Bachelor of Science in Computer Science and Statistics, Minor in Mathematics",
+      "gpa": "3.98/4.0",
+      "dateRange": "May 2025",
+      "description": "Dual degree in Computer Science and Statistics with a Mathematics minor.",
+      "courses": [
+        "Operating Systems",
+        "Cloud Computing",
+        "Databases",
+        "Networks",
+        "Assembly",
+        "DSA",
+        "OOP",
+        "Computational Intelligence",
+        "Big Data Management"
+      ],
+      "honors": [],
+      "links": [],
+      "image": "/images/schools/mizzou.jpg"
+    }
+  ],
+  "experience": [
+    {
+      "id": "roblox-2025",
+      "company": "Roblox",
+      "location": "San Mateo, CA",
+      "role": "Software Engineer Intern",
+      "dateRange": "May 2025 – August 2025",
+      "bullets": [
+        "Engineered infrastructure for rapid recovery of services to reduce critical downtime on the Infrastructure/Continuous Deployment team",
+        "Saved dozens of engineer hours by enabling bulk service redeployment for incident managers without engineer intervention",
+        "Led development of a tool capable of redistributing 10,000+ service instances across ~15 hardware cells during setup and failover",
+        "Implemented fault-tolerant Temporal workflows in Go capable of triggering thousands of Nomad jobs in batches"
+      ]
+    },
+    {
+      "id": "roblox-2024",
+      "company": "Roblox",
+      "location": "San Mateo, CA",
+      "role": "Software Engineer Intern",
+      "dateRange": "May 2024 – August 2024",
+      "bullets": [
+        "Built infra for company-wide big data visualization using Apache Superset on the Foundation AI/Data Infrastructure team",
+        "Designed systems leveraging AWS ELB, EKS, ElastiCache/Redis, RDS, etc. to handle 400k+ daily requests and database queries",
+        "Minimized manual overhead by automating cluster deployment using Terraform CDK in Go for provisioning and GHA for CI/CD",
+        "Coordinated with PMs to migrate 2500+ dashboards for 900 users to Superset 4.0.1 while minimizing critical dashboard downtime"
+      ]
+    },
+    {
+      "id": "mizzou-research",
+      "company": "University of Missouri",
+      "location": "Columbia, MO",
+      "role": "Research Assistant",
+      "dateRange": "August 2023 – May 2024",
+      "bullets": [
+        "Researched improvements on mine detection and classification from drone imagery for the MU Information and Data Fusion Lab",
+        "Increased PyTorch model training speed by 16x by engineering SLURM pipelines with dynamic resource allocation on an HPC cluster",
+        "Improved mine detection by augmenting 250,000+ real/simulated mine images resulting in a 10% increase in AUC"
+      ]
+    },
+    {
+      "id": "esri",
+      "company": "Esri",
+      "location": "St Charles, MO",
+      "role": "Software Development Intern",
+      "dateRange": "May 2023 – August 2023",
+      "bullets": [
+        "Streamlined the previously manual and error-prone generation of 3D maps of US cities from LiDAR data using the ArcGIS Python SDK",
+        "Proposed improvement to building and vegetation classification by training a PointNet model on 700,000+ 3D LiDAR points",
+        "Reduced generation time of 3.6 million NYC building footprint labels by 800% using Apache Spark for parallelized computations"
+      ]
+    }
+  ],
+  "skills": [
+    { "id": "python", "label": "Python", "category": "languages", "icon": "🐍" },
+    { "id": "go", "label": "Go", "category": "languages", "icon": "🐹" },
+    { "id": "cpp", "label": "C/C++", "category": "languages", "icon": "⚙️" },
+    { "id": "csharp", "label": "C#", "category": "languages", "icon": "🔷" },
+    { "id": "html", "label": "HTML", "category": "languages", "icon": "🌐" },
+    { "id": "css", "label": "CSS", "category": "languages", "icon": "🎨" },
+    { "id": "javascript", "label": "JavaScript", "category": "languages", "icon": "🟨" },
+    { "id": "typescript", "label": "TypeScript", "category": "languages", "icon": "🔵" },
+    { "id": "sql", "label": "SQL", "category": "languages", "icon": "🗃️" },
+    { "id": "r", "label": "R", "category": "languages", "icon": "📊" },
+    { "id": "dotnet", "label": ".NET", "category": "frameworks", "icon": "🔧" },
+    { "id": "react", "label": "React", "category": "frameworks", "icon": "⚛️" },
+    { "id": "react-native", "label": "React Native", "category": "frameworks", "icon": "📱" },
+    { "id": "express", "label": "Express", "category": "frameworks", "icon": "🚂" },
+    { "id": "node", "label": "Node", "category": "frameworks", "icon": "🟩" },
+    { "id": "flask", "label": "Flask", "category": "frameworks", "icon": "🌶️" },
+    { "id": "aws", "label": "AWS", "category": "technologies", "icon": "☁️" },
+    { "id": "kubernetes", "label": "Kubernetes", "category": "technologies", "icon": "⎈" },
+    { "id": "slurm", "label": "SLURM", "category": "technologies", "icon": "🖥️" },
+    { "id": "terraform", "label": "Terraform", "category": "technologies", "icon": "🏗️" },
+    { "id": "spark", "label": "Apache Spark/Kafka", "category": "technologies", "icon": "⚡" },
+    { "id": "pytorch", "label": "PyTorch", "category": "technologies", "icon": "🔥" },
+    { "id": "firebase", "label": "Google Firebase", "category": "technologies", "icon": "🔥" },
+    { "id": "mysql", "label": "MySQL", "category": "technologies", "icon": "🐬" },
+    { "id": "mongodb", "label": "MongoDB", "category": "technologies", "icon": "🍃" },
+    { "id": "supabase", "label": "Supabase", "category": "technologies", "icon": "⚡" }
+  ],
+  "projects": [
+    {
+      "id": "kings-eye",
+      "name": "King's Eye",
+      "slug": "kings-eye",
+      "description": "A mobile app that converts chess board images into digital, interactive boards. Uses YOLOv8 classification hosted on AWS Lambda for board recognition.",
+      "tech": ["React Native", "Express", "Node", "Firebase", "MongoDB", "AWS Lambda", "YOLOv8", "Heroku"],
+      "categories": ["REACT_NATIVE", "AWS_INFRA"],
+      "status": "ONLINE",
+      "featured": true,
+      "image": null,
+      "links": {
+        "github": "https://github.com/AndrewChang-cpu/kings-eye",
+        "live": null
+      }
+    },
+    {
+      "id": "algo-trading",
+      "name": "Algorithmic Trading Platform",
+      "slug": "algo-trading",
+      "description": "A web app for creating, testing, and monitoring hundreds of trading strategies in real-time with Kubernetes-backed low-latency live trading.",
+      "tech": ["AWS", "Kubernetes", "Kafka", "Celery", "Python", "Backtrader"],
+      "categories": ["AWS_INFRA", "KUBERNETES"],
+      "status": "ACTIVE",
+      "featured": true,
+      "image": null,
+      "links": {
+        "github": "https://github.com/AndrewChang-cpu/algo-trading",
+        "live": null
+      }
+    }
+  ],
+  "hackathons": [
+    {
+      "id": "hackcmu-2025",
+      "name": "HackCMU 2025",
+      "year": 2025,
+      "description": "Gamified job tracker leveraging React and Node.js to auto-parse applications from Gmail with the Claude API",
+      "placement": "PARTICIPANT",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "hackku-2025",
+      "name": "HackKU 2025",
+      "year": 2025,
+      "description": "Medication tracking React Native/Supabase app with barcode scanning and conflict detection",
+      "placement": "FINALIST",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "berkeley-ai-2024",
+      "name": "Berkeley AI Hackathon 2024",
+      "year": 2024,
+      "description": "RAG data augmenter for generating synthetic training data using Chroma DB and OpenAI/Groq",
+      "placement": "PARTICIPANT",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "calhacks-2023",
+      "name": "Cal Hacks 2023",
+      "year": 2023,
+      "description": "Restaurant recommendation web app based on personal history/preferences using OpenAI API and Convex DB",
+      "placement": "PARTICIPANT",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "tigerhacks-2022",
+      "name": "TigerHacks 2022",
+      "year": 2022,
+      "description": "Navigation web app displaying bus routes, parking, and incidents on campus using GCP",
+      "placement": "WINNER",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "tigerhacks-2021",
+      "name": "TigerHacks 2021",
+      "year": 2021,
+      "description": "Interactive web app allowing users to navigate the solar system in pixel art",
+      "placement": "WINNER",
+      "status": "COMPLETED"
+    }
+  ]
+}

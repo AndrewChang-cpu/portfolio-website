@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /c/Users/Andrew/Desktop/Coding/Github/portfolio-website/*.json 2>/dev/null || echo \"No JSON files found in root\")",
+      "Bash(ls /c/Users/Andrew/Desktop/Coding/Github/portfolio-website/documentation/views/ 2>/dev/null && node --version && npm --version)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --src-dir=no --import-alias=\"@/*\" --yes 2>&1)",
+      "Bash(npx create-next-app@latest temp-next --typescript --tailwind --app --src-dir=no --import-alias=\"@/*\" --yes 2>&1 && echo \"DONE\")",
+      "Bash(cp temp-next/package.json . && cp temp-next/package-lock.json . && cp temp-next/tsconfig.json . && cp temp-next/next.config.ts . && cp temp-next/postcss.config.mjs . && cp temp-next/tailwind.config.ts . && cp temp-next/eslint.config.mjs . && cp -r temp-next/node_modules . && cp -r temp-next/app . && cp -r temp-next/public . && rm -rf temp-next && echo \"Done copying\")",
+      "Bash(cp temp-next/package.json . && cp temp-next/package-lock.json . && cp temp-next/tsconfig.json . && cp temp-next/next.config.ts . && cp temp-next/postcss.config.mjs . && cp temp-next/eslint.config.mjs . && cp temp-next/next-env.d.ts . && cp -r temp-next/app . && cp -r temp-next/public . && cp -r temp-next/node_modules . && rm -rf temp-next && echo \"Done\")",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Read(//c/Users/Andrew/.claude/projects/C--Users-Andrew-Desktop-Coding-Github-portfolio-website/memory//**)",
+      "Read(//c/Users/Andrew/.claude/projects/C--Users-Andrew-Desktop-Coding-Github-portfolio-website/memory/**)",
+      "WebSearch",
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:hackernoon.com)",
+      "WebFetch(domain:cursor.com)"
+    ]
+  }
+}

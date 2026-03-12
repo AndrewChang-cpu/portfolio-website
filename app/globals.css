@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "tailwindcss";
+
+/* ── Design Tokens (Tailwind v4 @theme) ──────────────────────────────────── */
+@theme inline {
+  /* Pixel palette */
+  --color-pixel-bg:        #0d0d0d;
+  --color-pixel-surface:   #1a1a1a;
+  --color-pixel-border:    #3a3a3a;
+  --color-pixel-text:      #e0e0e0;
+  --color-pixel-muted:     #888888;
+  --color-pixel-accent:    #aaaaaa;
+  --color-pixel-highlight: #ffffff;
+  --color-pixel-green:     #4ade80;
+  --color-pixel-amber:     #fbbf24;
+  --color-pixel-red:       #f87171;
+
+  /* Pixel font */
+  --font-pixel: "Press Start 2P", monospace;
+  --font-mono:  ui-monospace, "Courier New", monospace;
+
+  /* Keyframe animations */
+  --animate-blink:   blink 1s step-start infinite;
+  --animate-scanline: scanline 8s linear infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes scanline {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-pixel-bg);
+  color: var(--color-pixel-text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  image-rendering: pixelated;
+}
+
+/* ── Pixel border utility ─────────────────────────────────────────────────── */
+.pixel-border {
+  box-shadow:
+    inset -4px -4px 0 0 #000,
+    inset 4px 4px 0 0 #555,
+    0 0 0 2px #3a3a3a;
+}
+
+/* ── Scanline overlay ─────────────────────────────────────────────────────── */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+  z-index: 9999;
+}
+
+/* ── Pixel heading helper ─────────────────────────────────────────────────── */
+.font-pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.05em;
+  image-rendering: pixelated;
+}
