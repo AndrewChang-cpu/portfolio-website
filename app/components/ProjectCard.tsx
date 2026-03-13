@@ -40,10 +40,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
       <div className="flex gap-3 pt-2 border-t border-pixel-border">
         {project.links.github && (
-          <PixelButton label="[ GITHUB ]" href={project.links.github} variant="secondary" />
+          <PixelButton label="[ GITHUB ]" href={project.links.github} variant="secondary" external />
         )}
         {project.links.live && (
-          <PixelButton label="[ LIVE ]" href={project.links.live} variant="primary" />
+          <PixelButton label="[ LIVE ]" href={project.links.live} variant="primary" external />
         )}
       </div>
     </article>

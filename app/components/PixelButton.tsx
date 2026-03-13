@@ -1,9 +1,12 @@
+import Link from 'next/link';
+
 interface PixelButtonProps {
   label: string;
   href?: string;
   onClick?: () => void;
   variant?: 'primary' | 'secondary';
   className?: string;
+  external?: boolean;
 }
 
 export default function PixelButton({
@@ -12,6 +15,7 @@ export default function PixelButton({
   onClick,
   variant = 'primary',
   className = '',
+  external = false,
 }: PixelButtonProps) {
   const base =
     'inline-block font-pixel text-[10px] px-4 py-2 border-2 transition-colors cursor-pointer select-none';
@@ -22,10 +26,17 @@ export default function PixelButton({
   const cls = `${base} ${variants[variant]} ${className}`;
 
   if (href) {
+    if (external) {
+      return (
+        <a href={href} className={cls} target="_blank" rel="noopener noreferrer">
+          {label}
+        </a>
+      );
+    }
     return (
-      <a href={href} className={cls} target="_blank" rel="noopener noreferrer">
+      <Link href={href} className={cls}>
         {label}
-      </a>
+      </Link>
     );
   }
 
