@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import PixelCursor from '@/app/components/PixelCursor';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: 'Andrew Chang — Portfolio',
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className="scanlines min-h-screen antialiased">
         <PixelCursor />
         {children}
+        <Analytics />
       </body>
     </html>
   );

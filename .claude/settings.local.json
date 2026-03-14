@@ -9,7 +9,13 @@
       "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run build 2>&1 | tail -40)",
       "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run test -- --reporter=verbose 2>&1 | tail -60)",
       "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run test 2>&1)",
-      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run build 2>&1)"
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run build 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm i @vercel/analytics 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm info @vitejs/plugin-react versions --json 2>&1 | tail -5)",
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm info @vitejs/plugin-react@6.0.1 peerDependencies 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm i @vitejs/plugin-react@6.0.1 @vercel/analytics 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm info vitest@latest version && npm info vitest peerDependencies 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm i -D vitest@latest @testing-library/react@latest 2>&1)"
     ]
   }
 }
