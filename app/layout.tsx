@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import PixelCursor from '@/app/components/PixelCursor';
 
 export const metadata: Metadata = {
   title: 'Andrew Chang — Portfolio',
@@ -12,8 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="scanlines min-h-screen antialiased">
+        <PixelCursor />
         {children}
       </body>
     </html>

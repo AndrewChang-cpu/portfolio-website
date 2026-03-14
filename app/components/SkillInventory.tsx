@@ -16,10 +16,25 @@ export default function SkillInventory({ skills, category, label }: SkillInvento
         {filtered.map((skill) => (
           <div
             key={skill.id}
-            className="border border-pixel-border bg-pixel-bg p-2 flex flex-col items-center gap-1 text-center"
+            className="group relative border border-pixel-border bg-pixel-bg p-2 flex flex-col items-center gap-1 text-center"
           >
             <span className="text-lg leading-none" aria-hidden="true">{skill.icon}</span>
             <span className="font-mono text-[11px] text-pixel-text">{skill.label}</span>
+
+            {/* RPG level bar — revealed on hover */}
+            <div
+              className="flex gap-[2px] mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+              aria-label={`Proficiency: ${skill.level} of 5`}
+            >
+              {Array.from({ length: 5 }, (_, i) => (
+                <span
+                  key={i}
+                  className={`block w-2 h-2 border border-pixel-border ${
+                    i < skill.level ? 'bg-pixel-green' : 'bg-pixel-bg'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         ))}
       </div>

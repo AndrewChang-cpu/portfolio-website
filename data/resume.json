@@ -33,22 +33,31 @@
       "id": "mizzou",
       "school": "University of Missouri",
       "location": "Columbia, MO",
-      "degree": "Bachelor of Science in Computer Science and Statistics, Minor in Mathematics",
+      "degree": "Bachelor of Science in Computer Science and Statistics, Minor in Mathematics, Honors",
       "gpa": "3.98/4.0",
-      "dateRange": "May 2025",
+      "dateRange": "August 2021 – May 2025",
       "description": "Dual degree in Computer Science and Statistics with a Mathematics minor.",
       "courses": [
+        "Data Structures and Algorithms",
+        "Object Oriented Programming",
         "Operating Systems",
-        "Cloud Computing",
         "Databases",
         "Networks",
         "Assembly",
-        "DSA",
-        "OOP",
+        "Cloud Computing",
         "Computational Intelligence",
-        "Big Data Management"
+        "AI/ML",
+        "Multivariable Calculus",
+        "Differential Equations",
+        "Discrete Mathematics",
+        "Matrix Theory"
       ],
-      "honors": [],
+      "honors": [
+        "National Merit Finalist Scholarship",
+        "Marvin Elston Scholarship",
+        "Bright Flight",
+        "High Dean's List"
+      ],
       "links": [],
       "image": "/images/schools/mizzou.jpg"
     }
@@ -106,32 +115,32 @@
     }
   ],
   "skills": [
-    { "id": "python", "label": "Python", "category": "languages", "icon": "🐍" },
-    { "id": "go", "label": "Go", "category": "languages", "icon": "🐹" },
-    { "id": "cpp", "label": "C/C++", "category": "languages", "icon": "⚙️" },
-    { "id": "csharp", "label": "C#", "category": "languages", "icon": "🔷" },
-    { "id": "html", "label": "HTML", "category": "languages", "icon": "🌐" },
-    { "id": "css", "label": "CSS", "category": "languages", "icon": "🎨" },
-    { "id": "javascript", "label": "JavaScript", "category": "languages", "icon": "🟨" },
-    { "id": "typescript", "label": "TypeScript", "category": "languages", "icon": "🔵" },
-    { "id": "sql", "label": "SQL", "category": "languages", "icon": "🗃️" },
-    { "id": "r", "label": "R", "category": "languages", "icon": "📊" },
-    { "id": "dotnet", "label": ".NET", "category": "frameworks", "icon": "🔧" },
-    { "id": "react", "label": "React", "category": "frameworks", "icon": "⚛️" },
-    { "id": "react-native", "label": "React Native", "category": "frameworks", "icon": "📱" },
-    { "id": "express", "label": "Express", "category": "frameworks", "icon": "🚂" },
-    { "id": "node", "label": "Node", "category": "frameworks", "icon": "🟩" },
-    { "id": "flask", "label": "Flask", "category": "frameworks", "icon": "🌶️" },
-    { "id": "aws", "label": "AWS", "category": "technologies", "icon": "☁️" },
-    { "id": "kubernetes", "label": "Kubernetes", "category": "technologies", "icon": "⎈" },
-    { "id": "slurm", "label": "SLURM", "category": "technologies", "icon": "🖥️" },
-    { "id": "terraform", "label": "Terraform", "category": "technologies", "icon": "🏗️" },
-    { "id": "spark", "label": "Apache Spark/Kafka", "category": "technologies", "icon": "⚡" },
-    { "id": "pytorch", "label": "PyTorch", "category": "technologies", "icon": "🔥" },
-    { "id": "firebase", "label": "Google Firebase", "category": "technologies", "icon": "🔥" },
-    { "id": "mysql", "label": "MySQL", "category": "technologies", "icon": "🐬" },
-    { "id": "mongodb", "label": "MongoDB", "category": "technologies", "icon": "🍃" },
-    { "id": "supabase", "label": "Supabase", "category": "technologies", "icon": "⚡" }
+    { "id": "python",       "label": "Python",            "category": "languages",    "icon": "🐍", "level": 5 },
+    { "id": "go",           "label": "Go",                "category": "languages",    "icon": "🐹", "level": 5 },
+    { "id": "cpp",          "label": "C/C++",             "category": "languages",    "icon": "⚙️", "level": 4 },
+    { "id": "csharp",       "label": "C#",                "category": "languages",    "icon": "🔷", "level": 3 },
+    { "id": "html",         "label": "HTML",              "category": "languages",    "icon": "🌐", "level": 4 },
+    { "id": "css",          "label": "CSS",               "category": "languages",    "icon": "🎨", "level": 4 },
+    { "id": "javascript",   "label": "JavaScript",        "category": "languages",    "icon": "🟨", "level": 4 },
+    { "id": "typescript",   "label": "TypeScript",        "category": "languages",    "icon": "🔵", "level": 4 },
+    { "id": "sql",          "label": "SQL",               "category": "languages",    "icon": "🗃️", "level": 4 },
+    { "id": "r",            "label": "R",                 "category": "languages",    "icon": "📊", "level": 3 },
+    { "id": "dotnet",       "label": ".NET",              "category": "frameworks",   "icon": "🔧", "level": 3 },
+    { "id": "react",        "label": "React",             "category": "frameworks",   "icon": "⚛️", "level": 4 },
+    { "id": "react-native", "label": "React Native",      "category": "frameworks",   "icon": "📱", "level": 4 },
+    { "id": "express",      "label": "Express",           "category": "frameworks",   "icon": "🚂", "level": 4 },
+    { "id": "node",         "label": "Node",              "category": "frameworks",   "icon": "🟩", "level": 4 },
+    { "id": "flask",        "label": "Flask",             "category": "frameworks",   "icon": "🌶️", "level": 3 },
+    { "id": "aws",          "label": "AWS",               "category": "technologies", "icon": "☁️", "level": 5 },
+    { "id": "kubernetes",   "label": "Kubernetes",        "category": "technologies", "icon": "⎈",  "level": 4 },
+    { "id": "slurm",        "label": "SLURM",             "category": "technologies", "icon": "🖥️", "level": 3 },
+    { "id": "terraform",    "label": "Terraform",         "category": "technologies", "icon": "🏗️", "level": 4 },
+    { "id": "spark",        "label": "Apache Spark/Kafka","category": "technologies", "icon": "⚡", "level": 4 },
+    { "id": "pytorch",      "label": "PyTorch",           "category": "technologies", "icon": "🔥", "level": 4 },
+    { "id": "firebase",     "label": "Google Firebase",   "category": "technologies", "icon": "🔥", "level": 3 },
+    { "id": "mysql",        "label": "MySQL",             "category": "technologies", "icon": "🐬", "level": 4 },
+    { "id": "mongodb",      "label": "MongoDB",           "category": "technologies", "icon": "🍃", "level": 3 },
+    { "id": "supabase",     "label": "Supabase",          "category": "technologies", "icon": "⚡", "level": 3 }
   ],
   "projects": [
     {
@@ -163,9 +172,115 @@
         "github": "https://github.com/AndrewChang-cpu/algo-trading",
         "live": null
       }
+    },
+    {
+      "id": "tartanhacks-2026",
+      "name": "TartanHacks 2026",
+      "slug": "tartanhacks-2026",
+      "description": "AI-powered Virtual Scotty (CMU Mascot) budgeting app that provides personalized insights and achievements.",
+      "tech": ["React", "Node", "Claude API"],
+      "categories": ["HACKATHON"],
+      "status": "ACTIVE",
+      "featured": false,
+      "placement": "WINNER",
+      "year": 2026,
+      "image": null,
+      "links": { "github": null, "live": null }
+    },
+    {
+      "id": "hackcmu-2025",
+      "name": "HackCMU 2025",
+      "slug": "hackcmu-2025",
+      "description": "Gamified job tracker leveraging React and Node.js to auto-parse applications from Gmail with the Claude API.",
+      "tech": ["React", "Node", "Claude API", "Gmail API"],
+      "categories": ["HACKATHON"],
+      "status": "ACTIVE",
+      "featured": false,
+      "placement": "PARTICIPANT",
+      "year": 2025,
+      "image": null,
+      "links": { "github": null, "live": null }
+    },
+    {
+      "id": "hackku-2025",
+      "name": "HackKU 2025",
+      "slug": "hackku-2025",
+      "description": "Medication tracking React Native/Supabase app with barcode scanning and conflict detection.",
+      "tech": ["React Native", "Supabase"],
+      "categories": ["HACKATHON", "REACT_NATIVE"],
+      "status": "ACTIVE",
+      "featured": false,
+      "placement": "FINALIST",
+      "year": 2025,
+      "image": null,
+      "links": { "github": null, "live": null }
+    },
+    {
+      "id": "berkeley-ai-2024",
+      "name": "Berkeley AI Hackathon 2024",
+      "slug": "berkeley-ai-2024",
+      "description": "RAG data augmenter for generating synthetic training data using Chroma DB and OpenAI/Groq.",
+      "tech": ["Python", "Chroma DB", "OpenAI", "Groq"],
+      "categories": ["HACKATHON"],
+      "status": "ACTIVE",
+      "featured": false,
+      "placement": "PARTICIPANT",
+      "year": 2024,
+      "image": null,
+      "links": { "github": null, "live": null }
+    },
+    {
+      "id": "calhacks-2023",
+      "name": "Cal Hacks 2023",
+      "slug": "calhacks-2023",
+      "description": "Restaurant recommendation web app based on personal history/preferences using OpenAI API and Convex DB.",
+      "tech": ["React", "Node", "OpenAI", "Convex DB"],
+      "categories": ["HACKATHON"],
+      "status": "ACTIVE",
+      "featured": false,
+      "placement": "PARTICIPANT",
+      "year": 2023,
+      "image": null,
+      "links": { "github": null, "live": null }
+    },
+    {
+      "id": "tigerhacks-2022",
+      "name": "TigerHacks 2022",
+      "slug": "tigerhacks-2022",
+      "description": "Navigation web app displaying bus routes, parking, and incidents on campus using GCP.",
+      "tech": ["React", "GCP"],
+      "categories": ["HACKATHON"],
+      "status": "ACTIVE",
+      "featured": false,
+      "placement": "WINNER",
+      "year": 2022,
+      "image": null,
+      "links": { "github": null, "live": null }
+    },
+    {
+      "id": "tigerhacks-2021",
+      "name": "TigerHacks 2021",
+      "slug": "tigerhacks-2021",
+      "description": "Interactive web app allowing users to navigate the solar system in pixel art.",
+      "tech": ["React", "JavaScript"],
+      "categories": ["HACKATHON"],
+      "status": "ACTIVE",
+      "featured": false,
+      "placement": "WINNER",
+      "year": 2021,
+      "image": null,
+      "links": { "github": null, "live": null }
     }
   ],
   "hackathons": [
+    {
+      "id": "tartanhacks-2026",
+      "name": "TartanHacks 2026",
+      "year": 2026,
+      "description": "AI-powered Virtual Scotty (CMU Mascott) budgeting app that provides personalized insights and achievements.",
+      "placement": "WINNER",
+      "status": "COMPLETED"
+    },
     {
       "id": "hackcmu-2025",
       "name": "HackCMU 2025",
@@ -213,6 +328,43 @@
       "description": "Interactive web app allowing users to navigate the solar system in pixel art",
       "placement": "WINNER",
       "status": "COMPLETED"
+    }
+  ],
+  "extracurriculars": [
+    {
+      "id": "mseli",
+      "organization": "MSE Leadership Initiative",
+      "role": "Career Development Coordinator",
+      "dateRange": "August 2025 – May 2026",
+      "description": "Create opportunities for career development and mentorship by collaborating with alumni, professors, and campus organizations."
+    },
+    {
+      "id": "acf",
+      "organization": "Asian Christian Fellowship",
+      "role": "Vice President",
+      "dateRange": "August 2021 – May 2025",
+      "description": "Coordinating inclusive talks and activities to help students explore and strengthen their faith"
+    },
+    {
+      "id": "sase",
+      "organization": "Society of Asian Scientists and Engineers",
+      "role": "Former President",
+      "dateRange": "August 2021 – May 2025",
+      "description": "Led the growth to 40+ active members and 250+ followers, managed the $6000 budget, and established SASE as a permanent organization within the College of Engineering"
+    },
+    {
+      "id": "mca",
+      "organization": "Mizzou Computing Association",
+      "role": "Former SIG Leader",
+      "dateRange": "August 2021 – May 2025",
+      "description": "Guided new students through college and the professional world as the leader of the Intro to CS Special Interest Group"
+    },
+    {
+      "id": "club-tennis",
+      "organization": "Club Tennis",
+      "role": "Former Vice President",
+      "dateRange": "August 2021 – May 2025",
+      "description": "Organized tournaments while pushing for financially accessible and beginner-friendly practices"
     }
   ]
 }

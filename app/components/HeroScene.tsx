@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { BIKE_RIDER_SPRITE, STAR_SPRITE, type PixelSprite } from '@/lib/sprites';
+import { BIKE_RIDER_SPRITE, type PixelSprite } from '@/lib/sprites';
 
 function createSpriteTexture(sprite: PixelSprite): THREE.DataTexture {
   const texture = new THREE.DataTexture(
@@ -47,29 +47,6 @@ export default function HeroScene() {
 
     const scene = new THREE.Scene();
 
-    // Ground line
-    const groundGeo = new THREE.PlaneGeometry(frustumSize * aspect, 0.04);
-    const groundMat = new THREE.MeshBasicMaterial({ color: 0x444444 });
-    const ground = new THREE.Mesh(groundGeo, groundMat);
-    ground.position.y = -frustumSize / 2 + 1.2;
-    scene.add(ground);
-
-    // Star sprites
-    const starTexture = createSpriteTexture(STAR_SPRITE);
-    const stars: THREE.Mesh[] = [];
-    for (let i = 0; i < 8; i++) {
-      const geo = new THREE.PlaneGeometry(0.4, 0.4);
-      const mat = new THREE.MeshBasicMaterial({ map: starTexture, transparent: true });
-      const mesh = new THREE.Mesh(geo, mat);
-      mesh.position.set(
-        (Math.random() - 0.5) * frustumSize * aspect,
-        (Math.random() * frustumSize) / 2,
-        0
-      );
-      scene.add(mesh);
-      stars.push(mesh);
-    }
-
     // Bike rider sprite
     const bikeTexture = createSpriteTexture(BIKE_RIDER_SPRITE);
     const bikeGeo = new THREE.PlaneGeometry(2.0, 1.0);
@@ -90,13 +67,6 @@ export default function HeroScene() {
       if (bike.position.x > halfWidth + 1.5) {
         bike.position.x = -halfWidth - 1.5;
       }
-
-      // Stars twinkle (opacity pulse)
-      const t = Date.now() * 0.001;
-      stars.forEach((star, i) => {
-        (star.material as THREE.MeshBasicMaterial).opacity =
-          0.4 + 0.6 * Math.abs(Math.sin(t + i * 0.8));
-      });
 
       renderer.render(scene, camera);
     }
@@ -123,7 +93,6 @@ export default function HeroScene() {
       resizeObserver.disconnect();
       renderer.dispose();
       bikeTexture.dispose();
-      starTexture.dispose();
       if (mount.contains(renderer.domElement)) {
         mount.removeChild(renderer.domElement);
       }

@@ -1,4 +1,4 @@
-# Project Context
+﻿# Project Context
 - Name: Interactive Developer Portfolio
 - Stack: Next.js (App Router), TypeScript, React, Tailwind CSS, Three.js
 - Architecture: Component-driven UI with a strict separation of concerns. Data is statically sourced from data/resume.json to populate sections like Education, Experience, Projects, and Hackathons. UI elements are built as functional components in the app/components/ directory. Next.js Server Components should be used by default, isolating Three.js WebGL rendering exclusively to Client Components
@@ -10,6 +10,7 @@
 ## Extended Capabilities
 ALWAYS read `.vibe/mcp-triggers.md` before executing complex tasks or using external tools.
 
+
 ---
 
 # MCP Tool Triggers
@@ -18,3 +19,11 @@ ALWAYS read `.vibe/mcp-triggers.md` before executing complex tasks or using exte
 - UI/Browser: Use `puppeteer` MCP to inspect localhost rendering and console errors.
 - API/Docs: Use `context7` MCP to retrieve the most up-to-date framework documentation.
 - Complex Refactors: Use `sequential-thinking` MCP to output a step-by-step plan before writing code.
+
+
+---
+
+## Memory
+Project memory lives in `memory/`. Read `memory/INDEX.md` at the start of each session.
+After completing significant work, update the relevant memory files with key learnings, decisions, and corrections.
+If you have a native memory system, reconcile it with the `memory/` folder at session start.

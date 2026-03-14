@@ -47,19 +47,24 @@ describe('ExperienceTimeline', () => {
     expect(items).toHaveLength(3);
   });
 
-  it('even items use md:flex-row class', () => {
+  it('even items place the card in column 1', () => {
     const { container } = render(<ExperienceTimeline experiences={MOCK_EXPERIENCES} />);
     const ol = container.querySelector('ol')!;
     const items = Array.from(ol.querySelectorAll(':scope > li'));
-    expect(items[0].className).toContain('md:flex-row');
-    expect(items[2].className).toContain('md:flex-row');
+    // Even entries (0, 2) have a card wrapper with md:col-start-1
+    const card0 = items[0].querySelector('[class*="md:col-start-1"]');
+    const card2 = items[2].querySelector('[class*="md:col-start-1"]');
+    expect(card0).not.toBeNull();
+    expect(card2).not.toBeNull();
   });
 
-  it('odd items use md:flex-row-reverse class', () => {
+  it('odd items place the card in column 2', () => {
     const { container } = render(<ExperienceTimeline experiences={MOCK_EXPERIENCES} />);
     const ol = container.querySelector('ol')!;
     const items = Array.from(ol.querySelectorAll(':scope > li'));
-    expect(items[1].className).toContain('md:flex-row-reverse');
+    // Odd entries (1) have a card wrapper with md:col-start-2
+    const card1 = items[1].querySelector('[class*="md:col-start-2"]');
+    expect(card1).not.toBeNull();
   });
 
   it('renders bullet points', () => {

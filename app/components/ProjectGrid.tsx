@@ -10,6 +10,7 @@ interface ProjectGridProps {
 
 const FILTER_CATEGORIES: { label: string; value: ProjectCategory }[] = [
   { label: 'ALL UNITS',    value: 'ALL_UNITS' },
+  { label: 'HACKATHONS',   value: 'HACKATHON' },
   { label: 'REACT NATIVE', value: 'REACT_NATIVE' },
   { label: 'AWS INFRA',    value: 'AWS_INFRA' },
   { label: 'KUBERNETES',   value: 'KUBERNETES' },

@@ -95,7 +95,7 @@ data/resume.json → lib/resume.ts utilities → Server Component pages → comp
 ### Tailwind v4 Notes
 
 Tailwind v4 uses CSS-based config — there is no `tailwind.config.ts`. All custom tokens live in the `@theme inline` block in `app/globals.css`:
-- `--color-pixel-*` — full monochrome pixel palette
+- `--color-pixel-*` — bright, colorful, but not overbearing pixel palette
 - `--font-pixel` — "Press Start 2P"
 - `--animate-blink`, `--animate-scanline` — keyframe animations
 

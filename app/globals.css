@@ -3,17 +3,19 @@
 
 /* ── Design Tokens (Tailwind v4 @theme) ──────────────────────────────────── */
 @theme inline {
-  /* Pixel palette */
-  --color-pixel-bg:        #0d0d0d;
-  --color-pixel-surface:   #1a1a1a;
-  --color-pixel-border:    #3a3a3a;
-  --color-pixel-text:      #e0e0e0;
-  --color-pixel-muted:     #888888;
-  --color-pixel-accent:    #aaaaaa;
-  --color-pixel-highlight: #ffffff;
-  --color-pixel-green:     #4ade80;
-  --color-pixel-amber:     #fbbf24;
-  --color-pixel-red:       #f87171;
+  /* Semantic pixel palette — values driven by :root / [data-theme] vars below */
+  --color-pixel-bg:        var(--px-bg);
+  --color-pixel-surface:   var(--px-surface);
+  --color-pixel-border:    var(--px-border);
+  --color-pixel-text:      var(--px-text);
+  --color-pixel-muted:     var(--px-muted);
+  --color-pixel-accent:    var(--px-accent);
+  --color-pixel-highlight: var(--px-highlight);
+  --color-pixel-green:     var(--px-green);
+  --color-pixel-amber:     var(--px-amber);
+  --color-pixel-red:       var(--px-red);
+  --color-pixel-cyan:      var(--px-cyan);
+  --color-pixel-purple:    var(--px-purple);
 
   /* Pixel font */
   --font-pixel: "Press Start 2P", monospace;
@@ -22,6 +24,41 @@
   /* Keyframe animations */
   --animate-blink:   blink 1s step-start infinite;
   --animate-scanline: scanline 8s linear infinite;
+}
+
+/* ── Light theme (default) — black/gray ─────────────────────────────────── */
+:root {
+  --px-bg:        #d0d0d0;
+  --px-surface:   #e8e8e8;
+  --px-border:    #888888;
+  --px-text:      #111111;
+  --px-muted:     #444444;
+  --px-accent:    #c05000;
+  --px-highlight: #a02020;
+  --px-green:     #1a6a2a;
+  --px-amber:     #906000;
+  --px-red:       #a02020;
+  --px-cyan:      #005f88;
+  --px-purple:    #5a1a8a;
+  /* Semi-transparent surface for elements sitting over background images */
+  --px-overlay:   rgba(232, 232, 232, 0.88);
+}
+
+/* ── Dark theme ──────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --px-bg:        #0f0e17;
+  --px-surface:   #1a1a2e;
+  --px-border:    #3d3d6b;
+  --px-text:      #fffffe;
+  --px-muted:     #a7a9be;
+  --px-accent:    #ff8906;
+  --px-highlight: #f25f4c;
+  --px-green:     #4ade80;
+  --px-amber:     #fbbf24;
+  --px-red:       #f87171;
+  --px-cyan:      #22d3ee;
+  --px-purple:    #a855f7;
+  --px-overlay:   rgba(0, 0, 0, 0.70);
 }
 
 @keyframes blink {
@@ -56,8 +93,13 @@ body {
 .pixel-border {
   box-shadow:
     inset -4px -4px 0 0 #000,
-    inset 4px 4px 0 0 #555,
-    0 0 0 2px #3a3a3a;
+    inset 4px 4px 0 0 var(--color-pixel-border),
+    0 0 0 2px var(--color-pixel-border);
+}
+
+/* ── Overlay utility — themed semi-transparent surface over background art ── */
+.bg-pixel-overlay {
+  background-color: var(--px-overlay);
 }
 
 /* ── Scanline overlay ─────────────────────────────────────────────────────── */
@@ -70,8 +112,8 @@ body {
     to bottom,
     transparent 0px,
     transparent 2px,
-    rgba(0, 0, 0, 0.12) 2px,
-    rgba(0, 0, 0, 0.12) 4px
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
   );
   z-index: 9999;
 }
@@ -81,4 +123,39 @@ body {
   font-family: var(--font-pixel);
   letter-spacing: 0.05em;
   image-rendering: pixelated;
+}
+
+/* ── Custom cursor — hide OS cursor globally ─────────────────────────────── */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+/* ── Cursor-selecting state: show blinking ▶ before hovered nav links only ── */
+body.cursor-selecting nav a:hover::before {
+  content: '▶ ';
+  color: var(--px-accent);
+  animation: blink 0.6s step-start infinite;
+}
+
+/* ── Page transition — pixel wipe (View Transitions API) ─────────────────── */
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes slide-out-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+::view-transition-old(root) {
+  animation: 200ms steps(4) slide-out-left;
+}
+
+::view-transition-new(root) {
+  animation: 200ms steps(4) slide-in-right;
 }

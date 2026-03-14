@@ -4,13 +4,13 @@ import PageBackground from '@/app/components/PageBackground';
 import SectionHeader from '@/app/components/SectionHeader';
 import EducationCard from '@/app/components/EducationCard';
 import CourseTable from '@/app/components/CourseTable';
-import QuestLog from '@/app/components/QuestLog';
-import { getPersonal, getEducation, getHackathons } from '@/lib/resume';
+import ExtracurricularsPanel from '@/app/components/ExtracurricularsPanel';
+import { getPersonal, getEducation, getExtracurriculars } from '@/lib/resume';
 
 export default function AcademicsPage() {
   const personal = getPersonal();
   const education = getEducation();
-  const hackathons = getHackathons();
+  const extracurriculars = getExtracurriculars();
 
   return (
     <PageBackground page="academics">
@@ -35,8 +35,8 @@ export default function AcademicsPage() {
           <CourseTable education={education} />
         </div>
 
-        <SectionHeader title="> QUEST_LOG" as="h2" />
-        <QuestLog hackathons={hackathons} />
+        <SectionHeader title="> EXTRACURRICULARS" as="h2" />
+        <ExtracurricularsPanel extracurriculars={extracurriculars} />
       </main>
 
       <Footer personal={personal} />

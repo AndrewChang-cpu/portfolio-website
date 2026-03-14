@@ -1,3 +1,6 @@
+import { existsSync } from 'fs';
+import { join } from 'path';
+
 export type BackgroundPage = 'landing' | 'experience' | 'academics' | 'projects';
 
 interface PageBackgroundProps {
@@ -8,31 +11,61 @@ interface PageBackgroundProps {
 // TODO: Replace placeholder colors with actual 8-bit background PNGs
 const BACKGROUND_MAP: Record<BackgroundPage, string> = {
   landing:    '/images/backgrounds/landing-bg.png',    // TODO: 8-bit Hunt Library scene
-  experience: '/images/backgrounds/experience-bg.png', // TODO: 8-bit city skyline
+  experience: '/images/backgrounds/experience-bg.png', // 8-bit city skyline (video poster)
   academics:  '/images/backgrounds/academics-bg.png',  // TODO: 8-bit field/meadow
   projects:   '/images/backgrounds/projects-bg.png',   // TODO: 8-bit space/stars
 };
 
-const FALLBACK_MAP: Record<BackgroundPage, string> = {
-  landing:    '#0d1117',
-  experience: '#0d1120',
-  academics:  '#0d1410',
-  projects:   '#0a0a12',
-};
+// Falls back to the theme's background color so it works in both light and dark mode
+const FALLBACK_COLOR = 'var(--px-bg)';
+
+/** Derives the video URL from the PNG path if an .mp4 exists alongside it. */
+function getVideoUrl(pngPublicPath: string): string | undefined {
+  const mp4PublicPath = pngPublicPath.replace(/\.png$/, '.mp4');
+  const mp4FilePath = join(process.cwd(), 'public', mp4PublicPath);
+  return existsSync(mp4FilePath) ? mp4PublicPath : undefined;
+}
 
 export default function PageBackground({ page, children }: PageBackgroundProps) {
   const bgUrl = BACKGROUND_MAP[page];
-  const fallback = FALLBACK_MAP[page];
+  const videoUrl = getVideoUrl(bgUrl);
 
   return (
-    <div
-      className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat"
-      // Approved inline style exception: dynamic URL cannot be a Tailwind class
-      style={{
-        backgroundImage: `url('${bgUrl}')`,
-        backgroundColor: fallback,
-      }}
-    >
+    <div className="relative min-h-screen flex flex-col">
+      {/* Fixed background layer — stays in place while content scrolls */}
+      {videoUrl ? (
+        <video
+          key={videoUrl}
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-hidden="true"
+          className="fixed inset-0 w-full h-full object-cover -z-10"
+          poster={bgUrl}
+        >
+          <source src={videoUrl} type="video/mp4" />
+        </video>
+      ) : (
+        <div
+          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+          // Approved inline style exception: dynamic URL cannot be a Tailwind class
+          style={{
+            backgroundImage: `url('${bgUrl}')`,
+            backgroundColor: FALLBACK_COLOR,
+          }}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Fallback color behind video in case it hasn't loaded */}
+      <div
+        className="fixed inset-0 -z-20"
+        style={{ backgroundColor: FALLBACK_COLOR }}
+        aria-hidden="true"
+      />
+
+      {/* Scrolling content */}
       {children}
     </div>
   );

@@ -1,0 +1,4 @@
+﻿## Memory
+Project memory lives in `memory/`. Read `memory/INDEX.md` at the start of each session.
+After completing significant work, update the relevant memory files with key learnings, decisions, and corrections.
+If you have a native memory system, reconcile it with the `memory/` folder at session start.

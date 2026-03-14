@@ -2,7 +2,7 @@ import resumeData from '@/data/resume.json';
 
 // ─── Enums / Union Types ───────────────────────────────────────────────────
 
-export type ProjectCategory = 'ALL_UNITS' | 'REACT_NATIVE' | 'AWS_INFRA' | 'KUBERNETES';
+export type ProjectCategory = 'ALL_UNITS' | 'HACKATHON' | 'REACT_NATIVE' | 'AWS_INFRA' | 'KUBERNETES';
 export type ProjectStatus = 'ACTIVE' | 'ONLINE' | 'ARCHIVED';
 export type HackathonPlacement = 'WINNER' | 'FINALIST' | 'PARTICIPANT';
 export type SkillCategory = 'languages' | 'frameworks' | 'technologies';
@@ -46,6 +46,7 @@ export interface Skill {
   label: string;
   category: SkillCategory;
   icon: string;
+  level: number; // 1–5 proficiency
 }
 
 export interface Project {
@@ -62,6 +63,9 @@ export interface Project {
     github: string | null;
     live: string | null;
   };
+  // Hackathon-specific fields (only present when HACKATHON category)
+  placement?: HackathonPlacement;
+  year?: number;
 }
 
 export interface Hackathon {
@@ -73,6 +77,14 @@ export interface Hackathon {
   status: string;
 }
 
+export interface Extracurricular {
+  id: string;
+  organization: string;
+  role: string;
+  dateRange: string;
+  description: string;
+}
+
 export interface ResumeData {
   personal: PersonalInfo;
   education: Education[];
@@ -80,6 +92,7 @@ export interface ResumeData {
   skills: Skill[];
   projects: Project[];
   hackathons: Hackathon[];
+  extracurriculars: Extracurricular[];
 }
 
 // ─── Data Utilities ────────────────────────────────────────────────────────
@@ -114,4 +127,8 @@ export function getProjects(category?: ProjectCategory): Project[] {
 
 export function getHackathons(): Hackathon[] {
   return resumeData.hackathons as Hackathon[];
+}
+
+export function getExtracurriculars(): Extracurricular[] {
+  return (resumeData as ResumeData).extracurriculars;
 }

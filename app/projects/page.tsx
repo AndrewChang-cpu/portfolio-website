@@ -7,7 +7,7 @@ import { getPersonal, getProjects } from '@/lib/resume';
 
 export default function ProjectsPage() {
   const personal = getPersonal();
-  const projects = getProjects();
+  const projects = getProjects(); // already includes hackathon entries from resume.json
 
   return (
     <PageBackground page="projects">
