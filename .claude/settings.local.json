@@ -6,7 +6,10 @@
       "mcp__puppeteer__puppeteer_navigate",
       "mcp__puppeteer__puppeteer_screenshot",
       "Bash(cd \"C:/Users/Andrew/Desktop/Coding/Github/portfolio-website\" && npm run test 2>&1)",
-      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run build 2>&1 | tail -40)"
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run build 2>&1 | tail -40)",
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run test -- --reporter=verbose 2>&1 | tail -60)",
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run test 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm run build 2>&1)"
     ]
   }
 }

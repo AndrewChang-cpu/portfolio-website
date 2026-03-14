@@ -5,15 +5,13 @@ import { useEffect, useState } from 'react';
 type Theme = 'light' | 'dark';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
 
-  // On mount, read persisted preference
+  // On mount, sync React state with the theme already applied by the inline script
   useEffect(() => {
     const stored = localStorage.getItem('theme') as Theme | null;
-    if (stored === 'dark' || stored === 'light') {
-      setTheme(stored);
-      document.documentElement.setAttribute('data-theme', stored);
-    }
+    const resolved: Theme = stored === 'dark' || stored === 'light' ? stored : 'dark';
+    setTheme(resolved); // only sync React state, DOM attribute set by inline <script>
   }, []);
 
   function toggle() {
