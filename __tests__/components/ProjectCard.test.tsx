@@ -59,4 +59,16 @@ describe('ProjectCard', () => {
     expect(screen.getByText('React')).toBeInTheDocument();
     expect(screen.getByText('TypeScript')).toBeInTheDocument();
   });
+
+  it('renders TRY IT button linking to demo route when demoUrl is set', () => {
+    render(<ProjectCard project={{ ...BASE_PROJECT, demoUrl: 'https://scotty.andrew.codes' }} />);
+    const btn = screen.getByRole('link', { name: '[ TRY IT ]' });
+    expect(btn).toBeInTheDocument();
+    expect(btn).toHaveAttribute('href', '/projects/test-project/demo');
+  });
+
+  it('does not render TRY IT button when demoUrl is absent', () => {
+    render(<ProjectCard project={BASE_PROJECT} />);
+    expect(screen.queryByRole('link', { name: '[ TRY IT ]' })).toBeNull();
+  });
 });

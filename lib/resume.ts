@@ -63,6 +63,7 @@ export interface Project {
     github: string | null;
     live: string | null;
   };
+  demoUrl?: string;
   // Hackathon-specific fields (only present when HACKATHON category)
   placement?: HackathonPlacement;
   year?: number;

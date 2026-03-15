@@ -59,6 +59,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       <div className="flex gap-3 pt-2 border-t border-pixel-border">
+        {project.demoUrl && (
+          <PixelButton label="[ TRY IT ]" href={`/projects/${project.slug}/demo`} variant="primary" />
+        )}
         {project.links.github && (
           <PixelButton label="[ GITHUB ]" href={project.links.github} variant="secondary" external />
         )}
