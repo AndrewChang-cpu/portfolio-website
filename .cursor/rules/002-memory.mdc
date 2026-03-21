@@ -1,4 +1,10 @@
-﻿## Memory
-Project memory lives in `memory/`. Read `memory/INDEX.md` at the start of each session.
-After completing significant work, update the relevant memory files with key learnings, decisions, and corrections.
-If you have a native memory system, reconcile it with the `memory/` folder at session start.
+## Lessons & Self-Correction
+Read `tasks/lessons.md` at the start of each session. After ANY user correction, immediately add the pattern to `tasks/lessons.md`.
+
+## Task Management
+1. **Plan First**: Write plan to `tasks/todo.md` with checkable items.
+2. **Verify Plan**: Check in before starting implementation.
+3. **Track Progress**: Mark items complete as you go.
+4. **Explain Changes**: High-level summary at each step.
+5. **Document Results**: Add review section to `tasks/todo.md`.
+6. **Capture Lessons**: Update `tasks/lessons.md` after corrections.

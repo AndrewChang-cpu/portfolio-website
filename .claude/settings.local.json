@@ -1,6 +1,13 @@
 {
   "permissions": {
     "allow": [
+      "Bash(cd:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
       "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npx tsc --noEmit 2>&1)",
       "Bash(npx tsc:*)",
       "mcp__puppeteer__puppeteer_navigate",
@@ -15,7 +22,15 @@
       "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm info @vitejs/plugin-react@6.0.1 peerDependencies 2>&1)",
       "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm i @vitejs/plugin-react@6.0.1 @vercel/analytics 2>&1)",
       "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm info vitest@latest version && npm info vitest peerDependencies 2>&1)",
-      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm i -D vitest@latest @testing-library/react@latest 2>&1)"
+      "Bash(cd \"C:\\\\Users\\\\Andrew\\\\Desktop\\\\Coding\\\\Github\\\\portfolio-website\" && npm i -D vitest@latest @testing-library/react@latest 2>&1)",
+      "mcp__github__get_file_contents",
+      "Bash(cd \"/c/Users/Andrew/Desktop/Coding/Github/portfolio-website\" && npm run test 2>&1)",
+      "Bash(grep -l \"@anthropic-ai/sdk\\\\|dedalus\" /c/Users/Andrew/Desktop/Coding/Github/Scotty-Market/backend/src/**/*.ts 2>/dev/null | head -10)",
+      "Bash(cd \"/c/Users/Andrew/Desktop/Coding/Github/Scotty-Market/scotty-app\" && npm install sql.js 2>&1 | tail -5)",
+      "Bash(cd \"/c/Users/Andrew/Desktop/Coding/Github/Scotty-Market/scotty-app\" && node -e \"require\\('sql.js'\\); console.log\\('ok'\\)\" 2>&1)",
+      "Bash(cd \"/c/Users/Andrew/Desktop/Coding/Github/Scotty-Market/scotty-app\" && npm install --save-dev @types/sql.js 2>&1 | tail -3)",
+      "Bash(cd \"/c/Users/Andrew/Desktop/Coding/Github/Scotty-Market/scotty-app\" && npx tsc --noEmit 2>&1 | grep -v \"^$\" | head -30)",
+      "mcp__github__search_code"
     ]
   }
 }

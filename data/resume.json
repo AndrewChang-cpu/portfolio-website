@@ -185,7 +185,8 @@
       "placement": "WINNER",
       "year": 2026,
       "image": null,
-      "links": { "github": null, "live": null }
+      "links": { "github": null, "live": null },
+      "demoUrl": "https://scotty-market.vercel.app"
     },
     {
       "id": "hackcmu-2025",

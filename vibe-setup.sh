@@ -52,136 +52,105 @@ echo "[CREATED] .vibe/mcp-triggers.md"
 fi
 
 # ------------------------------------------------------------------------------
-# 1b. PROJECT MEMORY
+# 1b. TASK TRACKING & LESSONS
 # ------------------------------------------------------------------------------
-echo "[INFO] Initializing project memory..."
+echo "[INFO] Initializing task tracking..."
 
-mkdir -p memory
+mkdir -p tasks
 
-if [ ! -f memory/INDEX.md ]; then
-cat << 'EOF' > memory/INDEX.md
-# Memory Index
+if [ ! -f tasks/lessons.md ]; then
+cat << 'EOF' > tasks/lessons.md
+# Lessons Learned
 
-Read this file at the start of every session to orient yourself.
-Update the relevant memory files after completing significant work.
+Review this file at the start of every session. Update it after ANY correction from the user.
+Write rules for yourself that prevent the same mistake. Ruthlessly iterate until mistake rate drops.
 
-| File | Type | Description |
-|---|---|---|
-| user.md | user | Owner preferences, working style, expertise |
-| project.md | project | Current state, active goals, key decisions |
-| feedback.md | feedback | Corrections and things to avoid repeating |
-| reference.md | reference | Where things live — external systems, URLs, docs |
+## Format
 
-## Memory Format
+**Pattern**: [what happened]
+**Rule**: [what to do / not do going forward]
+**Why**: [root cause or user reasoning]
 
-Each memory file uses this structure:
-
-```markdown
----
-type: user | project | feedback | reference
-updated: YYYY-MM-DD
 ---
 
-[content]
-```
+## Active Lessons
 
-For **feedback** and **project** entries, include:
-- The rule or fact
-- **Why:** the reason behind it
-- **How to apply:** when this guidance kicks in
-
-## Notes for AI models
-
-- **Claude Code**: reconcile this folder with your native `.claude/projects/.../memory/` store.
-  Prefer the repo copy for project/feedback/reference; prefer your native store for user preferences.
-- **All other models**: this folder is your only persistent memory. Read it at session start;
-  write back any new learnings before the session ends.
-- Do not save: code patterns, file structure, or anything already in CLAUDE.md/AGENTS.md.
-- Do not duplicate entries. Update existing files rather than creating new ones.
+<!-- Add new lessons above this line. Remove lessons that have been internalized into config files. -->
 EOF
-echo "[CREATED] memory/INDEX.md"
+echo "[CREATED] tasks/lessons.md"
 fi
 
-if [ ! -f memory/user.md ]; then
-cat << 'EOF' > memory/user.md
----
-type: user
-updated: YYYY-MM-DD
----
+if [ ! -f tasks/todo.md ]; then
+cat << 'EOF' > tasks/todo.md
+# Task Tracker
 
-# User Profile
+## Current Tasks
 
-[To be populated as preferences and working style become clear.]
+<!-- Plan first: write checkable items here before starting implementation. -->
+<!-- Mark items complete as you go. Add a review section when done. -->
 
-Examples of what belongs here:
-- Preferred response length and format
-- Domain expertise (what to assume vs. explain)
-- Tool and workflow preferences
+## Completed
+
+<!-- Move completed task blocks here for reference. -->
 EOF
-echo "[CREATED] memory/user.md"
-fi
-
-if [ ! -f memory/project.md ]; then
-cat << 'EOF' > memory/project.md
----
-type: project
-updated: YYYY-MM-DD
----
-
-# Project State
-
-[To be populated after first working session.]
-
-Examples of what belongs here:
-- Current build status (passing/failing)
-- Active workstreams and their status
-- Key architectural decisions and why they were made
-- Known blockers or TODOs
-EOF
-echo "[CREATED] memory/project.md"
-fi
-
-if [ ! -f memory/feedback.md ]; then
-cat << 'EOF' > memory/feedback.md
----
-type: feedback
-updated: YYYY-MM-DD
----
-
-# Feedback & Corrections
-
-[Populated when the user corrects AI behavior.]
-
-Format per entry:
-**Rule**: [what to do / not do]
-**Why**: [reason the user gave]
-**How to apply**: [when this kicks in]
-EOF
-echo "[CREATED] memory/feedback.md"
-fi
-
-if [ ! -f memory/reference.md ]; then
-cat << 'EOF' > memory/reference.md
----
-type: reference
-updated: YYYY-MM-DD
----
-
-# External References
-
-[Populated as external systems are introduced.]
-
-Examples of what belongs here:
-- Issue tracker project names/URLs
-- Key dashboard or monitoring URLs
-- Relevant documentation pages
-- Environment-specific connection strings (non-secret)
-EOF
-echo "[CREATED] memory/reference.md"
+echo "[CREATED] tasks/todo.md"
 fi
 
 RULES_CONTENT=$(cat .vibe/rules.md)
 MCP_CONTENT=$(cat .vibe/mcp-triggers.md)
+
+# Shared operational rules block used across all agent configs
+read -r -d '' OPS_RULES << 'OPSEOF'
+# Operational Rules
+
+## 1. Plan Mode Default
+- Enter plan mode for ANY non-trivial task (3+ steps or architectural decisions).
+- If something goes sideways, STOP and re-plan immediately — don't keep pushing.
+- Use plan mode for verification steps, not just building.
+- Write detailed specs upfront to reduce ambiguity.
+
+## 2. Subagent Strategy
+- Use subagents liberally to keep main context window clean.
+- Offload research, exploration, and parallel analysis to subagents.
+- For complex problems, throw more compute at it via subagents.
+- One task per subagent for focused execution.
+
+## 3. Self-Improvement Loop
+- After ANY correction from the user: update `tasks/lessons.md` with the pattern.
+- Write rules for yourself that prevent the same mistake.
+- Ruthlessly iterate on these lessons until mistake rate drops.
+- Review `tasks/lessons.md` at session start for relevant patterns.
+
+## 4. Verification Before Done
+- Never mark a task complete without proving it works.
+- Diff behavior between main and your changes when relevant.
+- Ask yourself: "Would a staff engineer approve this?"
+- Run tests, check logs, demonstrate correctness.
+
+## 5. Demand Elegance (Balanced)
+- For non-trivial changes: pause and ask "is there a more elegant way?"
+- If a fix feels hacky: "Knowing everything I know now, implement the elegant solution."
+- Skip this for simple, obvious fixes — don't over-engineer.
+- Challenge your own work before presenting it.
+
+## 6. Autonomous Bug Fixing
+- When given a bug report: just fix it. Don't ask for hand-holding.
+- Point at logs, errors, failing tests — then resolve them.
+- Zero context switching required from the user.
+- Go fix failing CI tests without being told how.
+
+## 7. Task Management
+1. **Plan First**: Write plan to `tasks/todo.md` with checkable items.
+2. **Verify Plan**: Check in before starting implementation.
+3. **Track Progress**: Mark items complete as you go.
+4. **Explain Changes**: High-level summary at each step.
+5. **Document Results**: Add review section to `tasks/todo.md`.
+6. **Capture Lessons**: Update `tasks/lessons.md` after corrections.
+
+## Core Principles
+- **Simplicity First**: Make every change as simple as possible. Impact minimal code.
+- **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
+OPSEOF
 
 # ==============================================================================
 # 2. CURSOR CONFIGURATION
@@ -253,11 +222,13 @@ fi
 cp .vibe/rules.md .cursor/rules/000-main-rules.mdc
 cp .vibe/mcp-triggers.md .cursor/rules/001-mcp-triggers.mdc
 
-cat << 'EOF' > .cursor/rules/002-memory.mdc
-## Memory
-Project memory lives in `memory/`. Read `memory/INDEX.md` at the start of each session.
-After completing significant work, update the relevant memory files with key learnings, decisions, and corrections.
-If you have a native memory system, reconcile it with the `memory/` folder at session start.
+cat << EOF > .cursor/rules/002-operational.mdc
+$OPS_RULES
+
+---
+
+## Lessons & Self-Correction
+Read \`tasks/lessons.md\` at the start of each session. After ANY user correction, immediately add the pattern to \`tasks/lessons.md\`.
 EOF
 
 # ==============================================================================
@@ -309,6 +280,13 @@ You are an expert software architect. Write clean, secure, and optimized code wh
 
 $RULES_CONTENT
 
+## Extended Capabilities
+ALWAYS read \`.vibe/mcp-triggers.md\` before executing complex tasks or using external tools.
+
+---
+
+$OPS_RULES
+
 ---
 
 ## Project Architecture & Directory Map
@@ -329,9 +307,8 @@ $MCP_CONTENT
 
 ---
 
-## Memory
-Project memory lives in \`memory/\`. Read \`memory/INDEX.md\` at the start of each session.
-After completing significant work, update the relevant memory files with key learnings, decisions, and corrections.
+## Lessons & Self-Correction
+Read \`tasks/lessons.md\` at the start of each session. After ANY user correction, immediately add the pattern to \`tasks/lessons.md\`.
 
 ## Useful Project Commands
 - Run Development Server: npm run dev
@@ -349,16 +326,21 @@ mkdir -p .github
 cat << EOF > .github/copilot-instructions.md
 $RULES_CONTENT
 
+## Extended Capabilities
+ALWAYS read \`.vibe/mcp-triggers.md\` before executing complex tasks or using external tools.
+
+---
+
+$OPS_RULES
+
 ---
 
 $MCP_CONTENT
 
 ---
 
-## Memory
-Project memory lives in \`memory/\`. Read \`memory/INDEX.md\` at the start of each session.
-After completing significant work, update the relevant memory files with key learnings, decisions, and corrections.
-If you have a native memory system, reconcile it with the \`memory/\` folder at session start.
+## Lessons & Self-Correction
+Read \`tasks/lessons.md\` at the start of each session. After ANY user correction, immediately add the pattern to \`tasks/lessons.md\`.
 EOF
 
 cp CLAUDE.md AGENTS.md
