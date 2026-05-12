@@ -3,9 +3,13 @@ import './globals.css';
 import PixelCursor from '@/app/components/PixelCursor';
 import { Analytics } from '@vercel/analytics/next';
 
+// Swap the icon href to match your city:
+//   NYC → /favicon-liberty.svg
+//   SF  → /favicon-golden-gate.svg
 export const metadata: Metadata = {
   title: 'Andrew Chang — Portfolio',
   description: 'Software Engineer specializing in distributed systems and infrastructure.',
+  icons: { icon: '/favicon-liberty.svg' },
 };
 
 export default function RootLayout({

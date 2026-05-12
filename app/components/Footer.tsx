@@ -9,7 +9,7 @@ export default function Footer({ personal }: FooterProps) {
     <footer className="w-full border-t border-pixel-border bg-pixel-surface mt-auto">
       <div className="max-w-6xl mx-auto px-6 py-6 flex flex-wrap items-center justify-between gap-4">
         <p className="font-pixel text-[9px] text-pixel-muted">
-          © 2025 {personal.name}
+          © 2026 {personal.name}
         </p>
         <div className="flex gap-6">
           <a

@@ -2,6 +2,7 @@ import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import PageBackground from '@/app/components/PageBackground';
 import HeroContent from '@/app/components/HeroContent';
+import StatusTypewriter from '@/app/components/StatusTypewriter';
 import { getPersonal } from '@/lib/resume';
 
 export default function LandingPage() {
@@ -24,15 +25,15 @@ export default function LandingPage() {
           <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
               <p className="font-pixel text-[9px] text-pixel-muted mb-1">STATUS</p>
-              <p className="font-mono text-pixel-green text-sm">SEEKING_ROLES</p>
+              <StatusTypewriter statuses={personal.status} />
             </div>
             <div>
               <p className="font-pixel text-[9px] text-pixel-muted mb-1">PROGRAM</p>
               <p className="font-mono text-pixel-text text-sm">MSE @ CMU</p>
             </div>
             <div>
-              <p className="font-pixel text-[9px] text-pixel-muted mb-1">INTERNSHIPS</p>
-              <p className="font-mono text-pixel-text text-sm">4 COMPLETED</p>
+              <p className="font-pixel text-[9px] text-pixel-muted mb-1">EXPERIENCE</p>
+              <p className="font-mono text-pixel-text text-sm">1 YEAR</p>
             </div>
             <div>
               <p className="font-pixel text-[9px] text-pixel-muted mb-1">CONTACT</p>

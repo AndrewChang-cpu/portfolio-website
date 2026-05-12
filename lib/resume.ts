@@ -6,6 +6,7 @@ export type ProjectCategory = 'ALL_UNITS' | 'HACKATHON' | 'REACT_NATIVE' | 'AWS_
 export type ProjectStatus = 'ACTIVE' | 'ONLINE' | 'ARCHIVED';
 export type HackathonPlacement = 'WINNER' | 'FINALIST' | 'PARTICIPANT';
 export type SkillCategory = 'languages' | 'frameworks' | 'technologies';
+export type AvailabilityStatus = 'SEEKING_ROLES' | 'STUDENT' | 'WORKING' | 'BUILDING' | 'TRAVELING' | 'NOT_AVAILABLE';
 
 // ─── Interfaces ────────────────────────────────────────────────────────────
 
@@ -16,6 +17,7 @@ export interface PersonalInfo {
   linkedin: string;
   github: string;
   tagline: string;
+  status: AvailabilityStatus[];
 }
 
 export interface Education {

@@ -5,7 +5,8 @@
     "phone": "843-321-3791",
     "linkedin": "linkedin.com/in/CS-Andrew-Chang",
     "github": "github.com/AndrewChang-cpu",
-    "tagline": "Software Engineer — Distributed Systems & Infrastructure"
+    "tagline": "Software Engineer — Distributed Systems & Infrastructure",
+    "status": ["STUDENT", "BUILDING", "TRAVELING"]
   },
   "education": [
     {
