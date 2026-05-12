@@ -21,8 +21,9 @@
   --font-mono:  ui-monospace, "Courier New", monospace;
 
   /* Keyframe animations */
-  --animate-blink:   blink 1s step-start infinite;
+  --animate-blink:    blink 1s step-start infinite;
   --animate-scanline: scanline 8s linear infinite;
+  --animate-pan-bg:   pan-bg 10s linear infinite;
 }
 
 /* ── Light theme (default) — black/gray ─────────────────────────────────── */
@@ -58,6 +59,11 @@
   --px-cyan:      #22d3ee;
   --px-purple:    #a855f7;
   --px-overlay:   rgba(0, 0, 0, 0.70);
+}
+
+@keyframes pan-bg {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 @keyframes blink {

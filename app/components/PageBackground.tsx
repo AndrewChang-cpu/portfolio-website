@@ -1,5 +1,6 @@
 import { existsSync } from 'fs';
 import { join } from 'path';
+import LandingBackground from '@/app/components/LandingBackground';
 
 export type BackgroundPage = 'landing' | 'experience' | 'academics' | 'projects';
 
@@ -33,7 +34,9 @@ export default function PageBackground({ page, children }: PageBackgroundProps) 
   return (
     <div className="relative min-h-screen flex flex-col">
       {/* Fixed background layer — stays in place while content scrolls */}
-      {videoUrl ? (
+      {page === 'landing' ? (
+        <LandingBackground />
+      ) : videoUrl ? (
         <video
           key={videoUrl}
           autoPlay
