@@ -45,14 +45,14 @@ export default function PageBackground({ page, children }: PageBackgroundProps) 
           playsInline
           preload="auto"
           aria-hidden="true"
-          className="fixed inset-0 w-full h-full object-cover -z-10 bg-fade-in"
+          className="fixed inset-0 w-full h-full object-cover -z-10 bg-fade-in blur-[2px]"
           poster={bgUrl}
         >
           <source src={videoUrl} type="video/mp4" />
         </video>
       ) : (
         <div
-          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat bg-fade-in"
+          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat bg-fade-in blur-[2px]"
           // Approved inline style exception: dynamic URL cannot be a Tailwind class
           style={{
             backgroundImage: `url('${bgUrl}')`,

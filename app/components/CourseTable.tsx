@@ -21,8 +21,8 @@ export default function CourseTable({ education }: CourseTableProps) {
                 key={`${edu.id}-${course}`}
                 className="border-b border-pixel-border last:border-0 hover:bg-pixel-bg transition-colors"
               >
-                <td className="font-mono text-[12px] text-pixel-text px-4 py-2">{course}</td>
-                <td className="font-mono text-[11px] text-pixel-muted px-4 py-2">{edu.school}</td>
+                <td className="font-mono text-[13px] text-pixel-text px-4 py-2">{course}</td>
+                <td className="font-mono text-[13px] text-pixel-muted px-4 py-2">{edu.school}</td>
               </tr>
             ))
           )}

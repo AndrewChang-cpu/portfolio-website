@@ -9,7 +9,7 @@ export default function EducationCard({ education }: EducationCardProps) {
     <div className="border border-pixel-border bg-pixel-surface p-6 pixel-border">
       <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
         <div>
-          <h3 className="font-pixel text-[12px] text-pixel-text mb-2">{education.school}</h3>
+          <h3 className="font-pixel text-[11px] text-pixel-text mb-2">{education.school}</h3>
           <p className="font-pixel text-[9px] text-pixel-accent">{education.degree}</p>
         </div>
         <div className="text-right">
@@ -25,7 +25,7 @@ export default function EducationCard({ education }: EducationCardProps) {
           {education.courses.map((course) => (
             <span
               key={course}
-              className="font-mono text-[11px] text-pixel-text border border-pixel-border px-2 py-1"
+              className="font-mono text-[13px] text-pixel-text border border-pixel-border px-2 py-1"
             >
               {course}
             </span>
@@ -38,7 +38,7 @@ export default function EducationCard({ education }: EducationCardProps) {
           <p className="font-pixel text-[9px] text-pixel-muted mb-2 uppercase">Honors</p>
           <ul className="space-y-1">
             {education.honors.map((honor) => (
-              <li key={honor} className="font-mono text-[12px] text-pixel-text flex gap-2">
+              <li key={honor} className="font-mono text-[13px] text-pixel-text flex gap-2">
                 <span className="text-pixel-accent">★</span>
                 <span>{honor}</span>
               </li>

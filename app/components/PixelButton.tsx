@@ -21,7 +21,7 @@ export default function PixelButton({
     'inline-block font-pixel text-[10px] px-4 py-2 border-2 transition-colors cursor-pointer select-none';
   const variants = {
     primary:   'border-pixel-text text-pixel-text hover:bg-pixel-text hover:text-pixel-bg',
-    secondary: 'border-pixel-muted text-pixel-muted hover:border-pixel-text hover:text-pixel-text',
+    secondary: 'border-pixel-text text-pixel-text hover:bg-pixel-text hover:text-pixel-bg',
   };
   const cls = `${base} ${variants[variant]} ${className}`;
 

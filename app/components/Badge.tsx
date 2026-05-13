@@ -8,14 +8,14 @@ interface BadgeProps {
 }
 
 const VARIANT_CLASSES: Record<BadgeVariant, string> = {
-  default:     'border-pixel-border text-pixel-muted',
+  default:     'border-pixel-border text-[#a7a9be]',
   winner:      'border-pixel-green text-pixel-green',
   finalist:    'border-pixel-amber text-pixel-amber',
-  participant: 'border-pixel-muted text-pixel-muted',
+  participant: 'border-[#a7a9be] text-[#a7a9be]',
   active:      'border-pixel-green text-pixel-green',
   online:      'border-pixel-amber text-pixel-amber',
   archived:    'border-pixel-red text-pixel-red',
-  muted:       'border-pixel-border text-pixel-muted',
+  muted:       'border-pixel-border text-[#a7a9be]',
 };
 
 export function placementToVariant(p: HackathonPlacement): BadgeVariant {

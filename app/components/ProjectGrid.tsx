@@ -36,7 +36,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
             className={`font-pixel text-[9px] px-3 py-2 border transition-colors cursor-pointer ${
               activeFilter === value
                 ? 'border-pixel-text text-pixel-text bg-pixel-surface'
-                : 'border-pixel-border text-pixel-muted hover:border-pixel-accent hover:text-pixel-accent'
+                : 'border-pixel-border text-[#a7a9be] hover:border-pixel-accent hover:text-pixel-accent'
             }`}
             aria-pressed={activeFilter === value}
           >

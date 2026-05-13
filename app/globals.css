@@ -41,7 +41,7 @@
   --px-cyan:      #005f88;
   --px-purple:    #5a1a8a;
   /* Semi-transparent surface for elements sitting over background images */
-  --px-overlay:   rgba(232, 232, 232, 0.88);
+  --px-overlay:   rgba(232, 232, 232, 0.96);
 }
 
 /* ── Dark theme ──────────────────────────────────────────────────────────── */
@@ -50,7 +50,7 @@
   --px-surface:   #1a1a2e;
   --px-border:    #3d3d6b;
   --px-text:      #fffffe;
-  --px-muted:     #a7a9be;
+  --px-muted:     #fffffe;
   --px-accent:    #ff8906;
   --px-highlight: #f25f4c;
   --px-green:     #4ade80;
@@ -58,7 +58,7 @@
   --px-red:       #f87171;
   --px-cyan:      #22d3ee;
   --px-purple:    #a855f7;
-  --px-overlay:   rgba(0, 0, 0, 0.70);
+  --px-overlay:   rgba(0, 0, 0, 0.88);
 }
 
 @keyframes pan-bg {

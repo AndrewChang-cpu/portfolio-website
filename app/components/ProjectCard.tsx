@@ -45,13 +45,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </div>
 
-      <p className="font-mono text-[12px] text-pixel-muted flex-1">{project.description}</p>
+      <p className="font-mono text-[13px] text-pixel-muted flex-1">{project.description}</p>
 
       <div className="flex flex-wrap gap-2">
         {project.tech.map((t) => (
           <span
             key={t}
-            className="font-mono text-[10px] text-pixel-accent border border-pixel-border px-2 py-1"
+            className="font-mono text-[13px] text-pixel-accent border border-pixel-border px-2 py-1"
           >
             {t}
           </span>

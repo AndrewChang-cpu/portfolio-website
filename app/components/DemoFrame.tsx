@@ -31,7 +31,7 @@ export default function DemoFrame({ src, title }: DemoFrameProps) {
       {error && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 font-pixel text-[10px] text-pixel-red">
           <span>&gt; DEMO UNAVAILABLE</span>
-          <span className="text-pixel-muted font-mono text-[11px]">Could not load {title}</span>
+          <span className="text-pixel-muted font-mono text-[12px]">Could not load {title}</span>
         </div>
       )}
 
