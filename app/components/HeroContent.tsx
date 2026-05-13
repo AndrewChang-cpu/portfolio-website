@@ -57,8 +57,8 @@ export default function HeroContent({ personal }: HeroContentProps) {
     function onMove(e: MouseEvent) {
       const cx = window.innerWidth  / 2;
       const cy = window.innerHeight / 2;
-      const dx = ((e.clientX - cx) / cx) * -4;
-      const dy = ((e.clientY - cy) / cy) * -4;
+      const dx = ((e.clientX - cx) / cx) * -0;
+      const dy = ((e.clientY - cy) / cy) * -0;
       card!.style.transform = `translate(${dx}px, ${dy}px)`;
     }
 

@@ -16,7 +16,7 @@ export default function LandingBackground() {
   return (
     <>
       {/* Panning background — overflow-hidden only on this layer */}
-      <div className="fixed inset-0 -z-10 overflow-hidden bg-fade-in">
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-fade-in" style={{ filter: 'blur(2px)' }}>
         <div className="flex h-full animate-pan-bg" style={{ width: 'max-content' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/backgrounds/cmu mizzou background.png" alt="" aria-hidden className="h-full w-auto object-cover" />
@@ -28,7 +28,7 @@ export default function LandingBackground() {
       {/* Sprite — pinned to the path in the background image.
           bottom: 17% matches the path's position as a fraction of image height,
           which stays correct at any viewport size since the bg is always h-full. */}
-      <div className="fixed pointer-events-none" style={{ zIndex: -5, bottom: '17%', left: '50%', transform: 'translateX(-50%)' }}>
+      <div className="fixed pointer-events-none" style={{ zIndex: -5, bottom: '17.5%', left: '50%', transform: 'translateX(-50%)', filter: 'blur(1.5px)' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={FRAMES[frameIndex]}
